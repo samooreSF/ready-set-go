@@ -1,5 +1,8 @@
 <h2>Challenge: {{challenge.title}}</h2>
 <p>{{challenge.caption}}</p>
+{{#each videos}}
 <video height= "300" width= "300" controls>
-<source src="{{video.videoLink}}" type="video/mp4">
+<source src= {{this.videoLink}} type="video/mp4">
 </video>
+{{!-- <p>{{this.videoLink}}</p> --}}
+{{/each}}

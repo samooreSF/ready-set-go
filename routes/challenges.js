@@ -28,6 +28,7 @@ router.post('/', requireLogin, upload.single('fileToUpload'), async (req, res) =
     })
     console.log("---------testing the videos--------")
     console.log(videos)
+    console.log(videos.videoLink)
 
     res.redirect(`/challenges/${challenge.id}`);
   } catch (error) {
@@ -46,7 +47,7 @@ router.post('/', requireLogin, upload.single('fileToUpload'), async (req, res) =
 router.get('/:challengeId', async (req, res) => {
   let challengeId = req.params.challengeId;
   let challenge = await Challenge.query().findById(challengeId);
-  let videos = await Videos.query().select('*').where('id',1)
+  let videos = await Videos.query().select('video_link')
   console.log(challenge.title)
   console.log("------videos table--------")
   console.log(typeof videos)
