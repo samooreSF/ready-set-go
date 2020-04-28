@@ -10,6 +10,21 @@ class User extends Password(Model) {
     return snakeCaseMappers();
   }
 
+  static get relationMappings() {
+    let Challenge = require('./Challenge');
+
+    return {
+      challenges: {
+        relation: Model.HasManyRelation,
+        modelClass: Challenge,
+        join: {
+          from: 'users.id',
+          to: 'challenges.user_id',
+        }
+      }
+    }
+  }
+
   static get jsonSchema() {
     return {
       type: 'object',

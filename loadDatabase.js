@@ -7,3 +7,4 @@ let knex = Knex(dbConfig.development)
 Model.knex(knex);
 
 global.User = require('./models/User');
+global.Challenge = require('./models/Challenge');

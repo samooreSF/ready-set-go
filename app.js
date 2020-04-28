@@ -56,8 +56,10 @@ app.use(sessionHandler);
 let loadUser = require('./loadUser');
 app.use(loadUser);
 
-let routes = require('./routes/index');
-app.use('/', routes);
+let indexRouter = require('./routes/index');
+let challengesRouter = require('./routes/challenges');
+app.use('/', indexRouter);
+app.use('/challenges', challengesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,33 @@
+{{#if errors}}
+  <ul>
+    {{#each errors}}
+      {{#each this}}
+        <li>{{@../key}} {{message}}</li>
+      {{/each}}
+    {{/each}}
+  </ul>
+{{/if}}
+
+<form method="POST" action="/challenges">
+  <div class="form-group row">
+    <label class="col-2 col-form-label" for="challenge-title">Title</label>
+
+    <div class="col">
+      <input name="challenge[title]" type="text" class="form-control" id="challenge-title">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label class="col-2 col-form-label" for="challenge-caption">Caption</label>
+
+    <div class="col">
+      <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2">
+    </div>
+    <div class="col">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
