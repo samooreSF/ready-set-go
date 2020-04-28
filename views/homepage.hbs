@@ -1,0 +1,11 @@
+<h1>Welcome!</h1>
+
+{{#if user}}
+<p>You're logged in, {{user.email}}! So many exlamation points!</p>
+{{else}}
+<p>You can...</p>
+<ul>
+  <li><a href="/register">Register</a></li>
+  <li><a href="/login">Login</a></li>
+</ul>
+{{/if}}
