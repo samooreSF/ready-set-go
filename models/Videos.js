@@ -1,8 +1,8 @@
 let { Model, snakeCaseMappers } = require('objection');
 
-class Challenge extends Model {
+class Videos extends Model {
   static get tableName() {
-    return 'challenges';
+    return 'videos';
   }
 
   static get columnNameMappers() {
@@ -11,42 +11,39 @@ class Challenge extends Model {
 
   static get relationMappings() {
     let User = require('./User');
-    let Videos = require('./Videos');
+    let Challenge = require('./Challenge')
 
     return {
-      user: {
+      userToVideo: {
         relation: Model.BelongsToOneRelation,
         modelClass: User,
         join: {
-          from: 'challenges.user_id',
+          from: 'videos.user_id',
           to: 'users.id',
         }
       },
       challengeToVideo: {
-        relation: Model.BelongsToOneRelation,
-        modelClass: Videos,
+        relation: Model.HasManyRelation,
+        modelClass: Challenge,
         join: {
-          from: 'challenge.videos_id',
-          to: 'videos.id',
+          from: 'videos.id',
+          to: 'challenge.videos_id',
         }
     }
-    }
   }
-
+}
   static get jsonSchema() {
     return {
       type: 'object',
-      required: [
-        'title',
-        'caption',
+      required:[
+        'videoLink',
       ],
       properties: {
         id: { type: 'integer' },
-        title: { type: 'string' },
-        caption: { type: 'string' },
+        videoLink: { type: 'string' },
       },
     };
   }
 }
 
-module.exports = Challenge;
+module.exports = Videos;

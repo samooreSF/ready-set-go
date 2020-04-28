@@ -8,7 +8,7 @@
   </ul>
 {{/if}}
 
-<form method="POST" action="/challenges">
+<form method="POST" action="/challenges" enctype="multipart/form-data">
   <div class="form-group row">
     <label class="col-2 col-form-label" for="challenge-title">Title</label>
 
@@ -22,6 +22,10 @@
     <div class="col">
       <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
     </div>
+  </div>
+  <div ="form-group row">
+    <label class="col-2 col-form-label" for="challenge-video">Video Upload</label>
+      <input key = "video" type="file" name="fileToUpload" accept="video/*">
   </div>
   <div class="row">
     <div class="col-2">

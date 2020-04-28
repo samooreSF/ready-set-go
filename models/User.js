@@ -12,6 +12,7 @@ class User extends Password(Model) {
 
   static get relationMappings() {
     let Challenge = require('./Challenge');
+    let Videos = require('./Videos')
 
     return {
       challenges: {
@@ -21,7 +22,15 @@ class User extends Password(Model) {
           from: 'users.id',
           to: 'challenges.user_id',
         }
-      }
+      },
+      userToVideo: {
+        relation: Model.HasManyRelation,
+        modelClass: Videos,
+        join: {
+          from: 'users.id',
+          to: 'videos.user_id',
+        }
+      },
     }
   }
 

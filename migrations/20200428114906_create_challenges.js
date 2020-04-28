@@ -4,6 +4,7 @@ exports.up = function(knex) {
     table.integer('user_id').notNullable().references('users.id');
     table.text('title').notNullable();
     table.text('caption');
+    table.integer('video_id').references('videos.id');
     table.timestamp('created_at').defaultTo(knex.fn.now());
   })
 };
