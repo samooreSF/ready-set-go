@@ -1,0 +1,30 @@
+{
+  "name": "ready-set-go",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "db:create": "createdb ready_set_go_development",
+    "db:drop": "dropdb ready_set_go_development",
+    "db:psql": "psql ready_set_go_development",
+    "db:repl": "node -i -r ./loadDatabase.js",
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.664.0",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "debug": "~2.6.9",
+    "express": "^4.16.4",
+    "express-handlebars": "^4.0.3",
+    "express-promise-router": "^3.0.3",
+    "http-errors": "^1.6.3",
+    "knex": "^0.21.1",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "objection": "^2.1.3",
+    "objection-password": "^2.0.0",
+    "path": "^0.12.7",
+    "pg": "^8.0.3"
+  }
+}
