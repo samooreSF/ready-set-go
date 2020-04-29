@@ -6,9 +6,9 @@
     "db:create": "createdb ready_set_go_development",
     "db:drop": "dropdb ready_set_go_development",
     "db:psql": "psql ready_set_go_development",
-    "db:repl": "node -i -r ./loadDatabase.js",
+    "db:repl": "node -i -r ./loadDatabase.js --experimental-repl-await",
     "dev": "nodemon ./bin/www",
-    "start": "node ./node_modules/.bin/www"
+    "start": "node ./bin/www"
   },
   "dependencies": {
     "aws-sdk": "^2.664.0",

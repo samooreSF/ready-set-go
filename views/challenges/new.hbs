@@ -24,18 +24,14 @@
   </div>
 
   <div class="form-group row">
-      <label class="col-2 col-form-label" for="category">Challenge Category? </label>
-  <div class="col">
-    <input type="checkbox" id="dance" name="dance">
-    <label for="dance">Dance</label>
-    <input type="checkbox" id="food" name="food">
-    <label for="food">Food</label>
-    <input type="checkbox" id="acting" name="acting">
-    <label for="acting">Acting</label>
-    <input type="checkbox" id="music" name="music">
-    <label for="music">Music</label>
-    <input type="checkbox" id="art" name="art">
-    <label for="art">Art</label>
+    <label class="col-2 col-form-label" for="category">Challenge Category? </label>
+    <div class="col">
+      <select name="challenge[categoryId]" id="challenge-category_id">
+        <option value="">Select a category</option>
+          {{#each allCategories}}
+            <option value="{{id}}">{{name}}</option>
+          {{/each}}
+      </select>
     </div>
   </div>
 

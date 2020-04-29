@@ -12,6 +12,7 @@ class Challenge extends Model {
   static get relationMappings() {
     let User = require('./User');
     let Videos = require('./Videos');
+    let Category = require('./Category');
 
     return {
       user: {
@@ -22,14 +23,22 @@ class Challenge extends Model {
           to: 'users.id',
         }
       },
-      challengeToVideo: {
+      video: {
         relation: Model.BelongsToOneRelation,
         modelClass: Videos,
         join: {
-          from: 'challenge.videos_id',
+          from: 'challenges.video_id',
           to: 'videos.id',
         }
-    }
+      },
+      category: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Category,
+        join: {
+          from: 'challenges.category_id',
+          to: 'category.id',
+        }
+      },
     }
   }
 
@@ -39,10 +48,16 @@ class Challenge extends Model {
       required: [
         'title',
         'caption',
+        'categoryId',
+        'videoId',
+        'userId',
       ],
       properties: {
         id: { type: 'integer' },
         title: { type: 'string' },
+        videoId: { type: 'integer' },
+        categoryId: { type: 'integer' },
+        userId: { type: 'integer' },
         caption: { type: 'string' },
       },
     };
