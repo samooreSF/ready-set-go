@@ -18,11 +18,28 @@
   </div>
   <div class="form-group row">
     <label class="col-2 col-form-label" for="challenge-caption">Caption</label>
-
-    <div class="col">
+ <div class="col">
       <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
     </div>
   </div>
+
+  <div class="form-group row">
+      <label class="col-2 col-form-label" for="category">Challenge Category? </label>
+  <div class="col">
+    <input type="checkbox" id="dance" name="dance">
+    <label for="dance">Dance</label>
+    <input type="checkbox" id="food" name="food">
+    <label for="food">Food</label>
+    <input type="checkbox" id="acting" name="acting">
+    <label for="acting">Acting</label>
+    <input type="checkbox" id="music" name="music">
+    <label for="music">Music</label>
+    <input type="checkbox" id="art" name="art">
+    <label for="art">Art</label>
+    </div>
+  </div>
+
+
   <div ="form-group row">
     <label class="col-2 col-form-label" for="challenge-video">Video Upload</label>
       <input key = "video" type="file" name="fileToUpload" accept="video/*">
