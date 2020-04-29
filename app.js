@@ -61,6 +61,7 @@ let challengesRouter = require('./routes/challenges');
 app.use('/', indexRouter);
 app.use('/challenges', challengesRouter);
 
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

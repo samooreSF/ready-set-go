@@ -52,4 +52,33 @@ router.get('/:challengeId', async (req, res) => {
   }
 });
 
+router.get('/category/:category', async (req, res) => {
+  let categoryName = req.params.category
+  // let categoryId = await Category.query().select('id').where("category",`${category}`)
+  console.log("--------running--------")
+  console.log(categoryName)
+  console.log(typeof categoryName)
+  let categoryId = await Category.query().select('id').where("name", categoryName)
+
+  // .findOne({'category': 'dance'})
+  console.log("--------this is new categoryId----------")
+  console.log(categoryId)
+  let categoryid = categoryId[0].id
+  console.log(categoryid)
+  // let challengeId = req.params.challengeId;
+  let newChallenge = await Challenge.query()
+  console.log("------new challenge-------")
+  console.log(newChallenge)
+  let challenge = await Challenge.query().where("category_id", categoryid ).withGraphFetched('[category, video]');
+  console.log("------challenge-----")
+  console.log(challenge)
+
+  if (challenge.length > 0) {
+    console.log("-------rendering------")
+    res.render('challenges/show', { challenge });
+  } else {
+    res.send('no videos for this category');
+  }
+});
+
 module.exports = router;

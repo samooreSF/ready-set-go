@@ -1,0 +1,13 @@
+{{#if errors}}
+  <ul>
+    {{#each errors}}
+      {{#each this}}
+        <li>{{@../key}} {{message}}</li>
+      {{/each}}
+    {{/each}}
+  </ul>
+{{/if}}
+
+<h1>
+  Acting Challenge
+</h1>
