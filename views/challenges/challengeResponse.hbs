@@ -1,28 +1,11 @@
-{{#if errors}}
-  <ul>
-    {{#each errors}}
-      {{#each this}}
-        <li>{{@../key}} {{message}}</li>
-      {{/each}}
-    {{/each}}
-  </ul>
-{{/if}}
-
-<form method="POST" action="/challenges" enctype="multipart/form-data">
-  <div class="form-group row">
-    <label class="col-2 col-form-label" for="challenge-title">Title</label>
-
-    <div class="col">
-      <input name="challenge[title]" type="text" class="form-control" id="challenge-title">
-    </div>
-  </div>
+<h1> you made it </h1>
+<form method="POST" action="/challenges/{{title}}" enctype="multipart/form-data" margin="20px 0 0 0">
   <div class="form-group row">
     <label class="col-2 col-form-label" for="challenge-caption">Caption</label>
  <div class="col">
       <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
     </div>
   </div>
-
   <div class="form-group row">
     <label class="col-2 col-form-label" for="category">Challenge Category? </label>
     <div class="col">
@@ -34,7 +17,6 @@
       </select>
     </div>
   </div>
-
 
   <div ="form-group row">
     <label class="col-2 col-form-label" for="challenge-video">Video Upload</label>
@@ -48,3 +30,17 @@
     </div>
   </div>
 </form>
+
+{{#if response}}
+{{#each response}}
+<video height= "300" width= "300" controls>
+<source src="{{video.videoLink}}" type="video/mp4">
+</video>
+<!-- <p>Thumbs-up icon on a button:
+       <a href="#" class="btn btn-xs btn-primary"><i class="far fa-hand-point-right" aria-hidden="true"></i>Like</a>
+</p> -->
+<p>{{caption}}</p>
+{{/each}}
+{{#else}}
+<p> there are no replies sweetie</p>
+{{/if}}

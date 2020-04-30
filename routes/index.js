@@ -3,10 +3,18 @@ let Router = require("express-promise-router");
 let router = new Router();
 
 let User = require('../models/User');
+let Challenge = require('../models/Challenge');
+let Videos = require('../models/Videos');
+let Category = require('../models/Category');
+let Like = require('../models/Like');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.render('homepage');
+router.get('/', async (req, res, next) => {
+  let challengeId = req.params.challengeId;
+  let challenge = await Challenge.query().where("user_id",req.session.userId).withGraphFetched('[category, video]');
+  console.log("-----tf my homepage at")
+  console.log(challenge)
+  res.render('homepage', { challenge });
 });
 
 router.get('/register', async(req, res) => {

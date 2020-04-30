@@ -1,13 +1,18 @@
 <h1>Welcome!</h1>
 
 {{#if user}}
-<p>You're logged in, {{user.email}}! So many exlamation points!</p>
-
-<h2>{{challenge.category.name}} Challenge: {{challenge.title}}</h2>
-<p>{{challenge.caption}}</p>
+<p>You're logged in, {{user.username}}! So many exclamation points!</p>
+<div class="row">
+{{#each challenge}}
+<div class = "col-md-4">
+<h2>{{category.name}} Challenge: {{title}}</h2>
+<p>{{caption}}</p>
 <video height= "300" width= "300" controls>
-<source src="{{challenge.video.videoLink}}" type="video/mp4">
+<source src="{{video.videoLink}}" type="video/mp4">
 </video>
+</div>
+{{/each}}
+</div>
 
 {{else}}
 <p>You can...</p>

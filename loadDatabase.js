@@ -10,3 +10,4 @@ global.User = require('./models/User');
 global.Challenge = require('./models/Challenge');
 global.Videos = require('./models/Videos');
 global.Category = require('./models/Category');
+global.Like = require('./models/Like');
