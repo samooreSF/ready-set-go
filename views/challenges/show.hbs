@@ -2,26 +2,22 @@
   video {
     border:solid;
   }
-  .row {
-
-  }
-
 
 </style>
 
 <div class ="container">
   <div class="row">
     <div class="col-12">
-     <h1>{{category.name}}</h1>
+     <h1>{{challenge.0.category.name}}</h1>
     </div>
 
 {{#each challenge}}
   <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-    <h2><a href="/challenges/challengeSubmission/{{title}}">{{category.name}}: {{title}}</a></h2>
+    <h2><a href="/challenges/challengeSubmission/{{title}}">{{title}}</a></h2>
     <video height= "200" width= "350" controls>
       <source src="{{video.videoLink}}" type="video/mp4">
     </video>
-    <p></p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="/challenges/profile/{{user.username}}"><i>{{user.username}}</a></button> {{caption}}</p>
+    <p></p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="/challenges/profile/{{user.username}}"><i>{{user.username}}</i></a></button> {{caption}}</p>
     <form method="GET" id="like-form" style="display: inline">
       <button onclick="this.disabled='disabled'" style="font-size:10px">like<i class="fa fa-thumbs-o-up"></i></button>
       <p>{{likeTotal}}</p>

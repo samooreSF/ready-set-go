@@ -1,9 +1,10 @@
-
-<h3>{{challenge.0.user.username}}'s Profile</h3>
+<div class="col-12">
+  <h2>{{challenge.0.user.username}}'s Profile</h2>
+</div>
 
 {{#each challenge}}
 <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-  <h2>{{category.name}} <a href="/challenges/challengeSubmission/{{title}}">Challenge: {{title}}</a></h2>
+  <h2><a href="/challenges/challengeSubmission/{{title}}">{{category.name}} Challenge: {{title}}</a></h2>
   <video height= "300" width= "300" controls>
   <source src="{{video.videoLink}}" type="video/mp4">
   </video>

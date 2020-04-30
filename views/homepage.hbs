@@ -1,23 +1,29 @@
-<h1>Welcome!</h1>
-
 {{#if user}}
-<p>You're logged in, {{user.username}}! So many exclamation points!</p>
-<div class="row">
+
+<div class ="container">
+<p>You're logged in, {{user.username}}</p>
+  <div class="row">
+    <div class="col-12">
+      <h1>Welcome Back!</h1>
+    </div>
+
+
+<div class="row"></div>
 {{#each challenge}}
-<div class = "col-md-4">
-<h2>{{category.name}} Challenge: {{title}}</h2>
-<p>{{caption}}</p>
-<video height= "300" width= "300" controls>
-<source src="{{video.videoLink}}" type="video/mp4">
-</video>
-</div>
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+    <h2>{{category.name}} Challenge: {{title}}</h2>
+    <video height= "200" width= "350" controls>
+      <source src="{{video.videoLink}}" type="video/mp4">
+    </video>
+    <p></p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="{{user.username}}"><i>{{user.username}}</i></a></button> {{caption}}</p>
+    </div>
 {{/each}}
-</div>
 
 {{else}}
-<p>You can...</p>
+<h3>You can...</h3>
 <ul>
-  <li><a href="/register">Register</a></li>
-  <li><a href="/login">Login</a></li>
+  <h3><li><a href="/register">Register</a></li></h3>
+  <h3><li><a href="/login">Login</a></li></h3>
 </ul>
+
 {{/if}}
