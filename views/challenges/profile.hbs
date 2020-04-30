@@ -1,0 +1,29 @@
+
+<h3>{{challenge.0.user.username}}'s Profile</h3>
+
+{{#each challenge}}
+<div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+  <h2>{{category.name}} <a href="/challenges/challengeSubmission/{{title}}">Challenge: {{title}}</a></h2>
+  <video height= "300" width= "300" controls>
+  <source src="{{video.videoLink}}" type="video/mp4">
+  </video>
+<!-- <p>Thumbs-up icon on a button:
+       <a href="#" class="btn btn-xs btn-primary"><i class="far fa-hand-point-right" aria-hidden="true"></i>Like</a>
+</p> -->
+<p>User: <a href="/challenges/{{user.username}}"><i>{{user.username}}</i></a></p>
+<p>{{caption}}</p>
+<form action="/challenges/show" method="POST" id="like-form" style="display: inline">
+  <button type="submit" name= "myButton" onsubmit="myButtonValue.disabled = true; return true;" id="thumbsUp" src="https://i.ibb.co/PCP6CXy/like-Clear.png" height="20px" width="20px">Likes</button>
+  <p>{{likeTotal}}</p>
+</form>
+
+
+<script>
+  function changeButton() {
+    let image = document.getElementById("thumbsUp");
+    image.src = "https://i.ibb.co/685z7Ct/likeBlue.png";
+}
+</script>
+
+</div>
+{{/each}}

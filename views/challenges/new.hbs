@@ -1,3 +1,9 @@
+<style>
+  .upload{
+    margin: 0 0 0 15px;
+  }
+</style>
+
 {{#if errors}}
   <ul>
     {{#each errors}}
@@ -8,23 +14,24 @@
   </ul>
 {{/if}}
 
+<div class="col-6">
 <form method="POST" action="/challenges" enctype="multipart/form-data" margin="20px 0 0 0">
   <div class="form-group row">
-    <label class="col-2 col-form-label" for="challenge-title">Hashtag</label>
+    <label class="col-4 col-form-label" for="challenge-title">Challenge Name</label>
 
     <div class="col">
       <input name="challenge[title]" type="text" class="form-control" id="challenge-title">
     </div>
   </div>
   <div class="form-group row">
-    <label class="col-2 col-form-label" for="challenge-caption">Caption</label>
+    <label class="col-4 col-form-label" for="challenge-caption">Caption</label>
  <div class="col">
       <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
     </div>
   </div>
 
   <div class="form-group row">
-    <label class="col-2 col-form-label" for="category">Challenge Category? </label>
+    <label class="col-4 col-form-label" for="category">Challenge Category? </label>
     <div class="col">
       <select name="challenge[categoryId]" id="challenge-category_id">
         <option value="">Select a category</option>
@@ -36,15 +43,14 @@
   </div>
 
 
-  <div ="form-group row">
-    <label class="col-2 col-form-label" for="challenge-video">Video Upload</label>
-      <input key = "video" type="file" name="fileToUpload" accept="video/*">
+  <div class="form-group row">
+    <label class="col-4 col-form-label" for="challenge-video">Video Upload</label>
+      <input class="upload" key = "video" type="file" name="fileToUpload" accept="video/*">
   </div>
   <div class="row">
-    <div class="col-2">
-    </div>
     <div class="col">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </form>
+</div>

@@ -1,46 +1,64 @@
-<h1> you made it </h1>
-<form method="POST" action="/challenges/{{title}}" enctype="multipart/form-data" margin="20px 0 0 0">
+<style>
+  .btn-primary {
+    margin: 0 0 20px 0;
+  }
+  .upload {
+    margin: 0 0 0 15px;
+  }
+</style>
+
+<div class="col-9">
+<form method="POST" action="/challenges/challengeSubmission" enctype="multipart/form-data" margin="20px 0 0 0">
   <div class="form-group row">
-    <label class="col-2 col-form-label" for="challenge-caption">Caption</label>
- <div class="col">
+    <label class="col-3 col-form-label" for="challenge-caption">Caption</label>
+    <div class="col-4">
       <input name="challenge[caption]" type="text" class="form-control" id="challenge-caption">
     </div>
   </div>
+
+<input type="hidden" id="custId" name= "challenge[title]" value="{{title}}">
+
   <div class="form-group row">
-    <label class="col-2 col-form-label" for="category">Challenge Category? </label>
-    <div class="col">
+    <label class="col-3 col-form-label" for="category">Challenge Category? </label>
+    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
       <select name="challenge[categoryId]" id="challenge-category_id">
         <option value="">Select a category</option>
           {{#each allCategories}}
-            <option value="{{id}}">{{name}}</option>
+            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+              <option value="{{id}}">{{name}}</option>
+            </div>
           {{/each}}
       </select>
     </div>
   </div>
 
-  <div ="form-group row">
-    <label class="col-2 col-form-label" for="challenge-video">Video Upload</label>
-      <input key = "video" type="file" name="fileToUpload" accept="video/*">
+  <div class="form-group row">
+    <label class="col-3 col-form-label" for="challenge-video">Video Upload</label>
+    <input key="video" class="upload" type="file" name="fileToUpload" accept="video/*">
   </div>
   <div class="row">
-    <div class="col-2">
-    </div>
     <div class="col">
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </div>
 </form>
+</div>
 
-{{#if response}}
-{{#each response}}
-<video height= "300" width= "300" controls>
-<source src="{{video.videoLink}}" type="video/mp4">
-</video>
-<!-- <p>Thumbs-up icon on a button:
-       <a href="#" class="btn btn-xs btn-primary"><i class="far fa-hand-point-right" aria-hidden="true"></i>Like</a>
-</p> -->
-<p>{{caption}}</p>
+{{#if responses}}
+{{#each responses}}
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+   <video height= "300" width= "300" controls>
+   <source src="{{video.videoLink}}" type="video/mp4">
+   </video>
+    <!-- <p>Thumbs-up icon on a button:
+           <a href="#" class="btn btn-xs btn-primary"><i class="far fa-hand-point-right" aria-hidden="true"></i>Like</a>
+    </p> -->
+    <p>{{caption}}</p>
+  </div>
+
 {{/each}}
-{{#else}}
-<p> there are no replies sweetie</p>
+{{else}}
+  <div class="col-4">
+    <h3>There aren't any responses to this challenge yet. Be the first person to post about it!</h3>
+  <div>
 {{/if}}
