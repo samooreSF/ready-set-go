@@ -11,7 +11,7 @@ let Challenge = require('../models/Challenge');
 let Videos = require('../models/Videos');
 let Category = require('../models/Category');
 let Like = require('../models/Like');
-let noCategory = [11,12,13,14,15];
+let noCategory = [];
 
 let router = new Router();
 
