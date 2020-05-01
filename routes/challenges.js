@@ -143,7 +143,7 @@ router.post("/likes", async (req,res) => {
 
   // res.render("challenges/show", )
 
-  router.get('/challengeSubmission/:id', async (req,res) =>{
+  router.get('/submit/challengeSubmission/:id', async (req,res) =>{
     console.log("------3. it got here------")
     let title = req.params.id
     console.log(title)
@@ -158,7 +158,7 @@ router.post("/likes", async (req,res) => {
     res.render('challenges/challengeResponse',{ title, responses, allCategories })
   })
 
-  router.post('/challengeSubmission',upload.single('fileToUpload'),async (req,res)=>{
+  router.post('/submit/challengeSubmission',upload.single('fileToUpload'),async (req,res)=>{
     console.log("------1. it got here------")
     let challengeData = req.body.challenge;
     challengeData.categoryId = challengeData.categoryId ? Number(challengeData.categoryId) : challengeData.categoryId;
