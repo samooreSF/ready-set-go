@@ -1,3 +1,4 @@
+var express = require('express');
 let Router = require('express-promise-router');
 let { ValidationError } = require('objection');
 let upload = require('../services/file-upload');
@@ -74,29 +75,65 @@ router.get('/category/:category', async (req, res) => {
 });
 
 
-router.get('/likes/:challengeId', async (req,res) => {
+
+router.post("/likes", async (req,res) => {
   console.log("--------entered----------")
-  let challengeId = req.params.challengeId
+  let challengeId = req.body.challengeId
   challengeId = parseInt(challengeId)
-  let userId = req.session.userId
-  console.log("-----------challenge and user id-----------")
   console.log(challengeId)
-  console.log(userId)
-  let likeUpdate = await Like.query().insert({
-    challengeId: challengeId,
-    userId: userId,
-  });
-  console.log("-----------likeUpdate-----------")
-  console.log(likeUpdate)
+  let userId = req.session.userId
+  userId = parseInt(userId)
+  console.log(typeof userId)
+
+  let isInSchema = await Like.query().select("challenge_id").where("challenge_id",challengeId);
+  console.log("-------isInSchema-----")
+  console.log(isInSchema.length);
+  if (isInSchema.length === 0) {
+    console.log("---IF")
+    let currentLikeTotal = await Like.query().insert({
+        challengeId: challengeId,
+        userId: userId,
+      });
+  }
+  else {
+  console.log("---ELSE")
+  let currentLikeTotal = await Like.query().select('likeTotal').where("challenge_id",challengeId);
+  console.log("-------currentLikeTotalSchema---------")
+  console.log(currentLikeTotal)
+  currentLikeTotal = currentLikeTotal[0].likeTotal;
+  console.log("-------currentLikeTotalValue---------")
+  console.log(currentLikeTotal)
+  let updatedLikeTotal = await Like.query().update({"likeTotal": currentLikeTotal + 1}).where("challengeId",challengeId);
+  console.log("-------UpdatedLikeTotalValue---------")
+  console.log(updatedLikeTotal)
+  }
+  // console.log("-------currentLikeTotalSchema---------")
+  // console.log(currentLikeTotal)
+
+  // currentLikeTotal = currentLikeTotal[0].likeTotal;
+  // console.log("-------currentLikeTotalValue---------")
+  // console.log(currentLikeTotal)
+  // let updatedLikeTotal = await Like.query().update({"likeTotal": currentLikeTotal + 1}).where("challengeId",challengeId);
+  console.log("-------UpdatedLikeTotalValue---------")
+  console.log(updatedLikeTotal)
 
 
-  let likeTotal = await Like.query().count('id').where('challenge_id',challengeId);
-  console.log("-----------likeTotal-----------")
-  likeTotal = likeTotal[0].count
-  let challengeData = await Like.query().where('challenge_id',challengeId).withGraphFetched('[user,challenge]')
+  // let likeUpdate = await Like.query().insert({
+  //   challengeId: challengeId,
+  //   userId: userId,
+  // });
+  // console.log("-----------likeUpdate-----------")
+  // console.log(likeUpdate)
 
-  console.log("-----------challengeData-----------")
-  console.log(challengeData)
+
+  // let likeTotal = await Like.query().count('id').where('challenge_id',challengeId);
+  // console.log("-----------likeTotal-----------")
+  // likeTotal = likeTotal[0].count
+  // console.log(likeTotal)
+  // let challengeData = await Like.query().where('challenge_id',challengeId).withGraphFetched('[user,challenge]')
+
+  // console.log("-----------challengeData-----------")
+  // console.log(challengeData)
   res.redirect('back',{ likeTotal });
 });
 
@@ -167,37 +204,7 @@ router.get('/likes/:challengeId', async (req,res) => {
     console.log(challenge)
     res.render('challenges/profile',{challenge})
 
-  })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  });
 
 
 

@@ -2,13 +2,16 @@
   video {
     border:solid;
   }
+  .col-12 {
+    ;
+  }
 
 </style>
 
 <div class ="container">
   <div class="row">
     <div class="col-12">
-     <h1>{{challenge.0.category.name}}</h1>
+     <h1><center><u>{{challenge.0.category.name}}</u></center></h1>
     </div>
 
 {{#each challenge}}
@@ -17,9 +20,10 @@
     <video height= "200" width= "350" controls>
       <source src="{{video.videoLink}}" type="video/mp4">
     </video>
-    <p></p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="/challenges/profile/{{user.username}}"><i>{{user.username}}</i></a></button> {{caption}}</p>
-    <form method="GET" id="like-form" style="display: inline">
-      <button onclick="this.disabled='disabled'" style="font-size:10px">like<i class="fa fa-thumbs-o-up"></i></button>
+    <p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="/challenges/profile/{{user.username}}"><i>{{user.username}}</i></a></button> {{caption}}</p>
+    <form method="POST" action="/challenges/likes" id="like-form" style="display: inline">
+      <input type="hidden" id="custId" name= "challengeId" value="{{id}}">
+      <button type="submit" onclick="this.disabled='disabled'"style="font-size:10px">like<i class="fa fa-thumbs-o-up"></i></button>
       <p>{{likeTotal}}</p>
     </form>
   </div>

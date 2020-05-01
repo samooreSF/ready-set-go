@@ -1,29 +1,57 @@
+<style>
+  .homestyle {
+    margin: 20px 0 0 0;
+  }
+  .header {
+    color: rgb(179, 161, 82);
+    margin: 0 0 20px 0;
+  }
+
+</style>
+
+
 {{#if user}}
 
 <div class ="container">
-<p>You're logged in, {{user.username}}</p>
-  <div class="row">
-    <div class="col-12">
-      <h1>Welcome Back!</h1>
-    </div>
+  <div class="homestyle">
+    <h4><u>Status:</u> Logged in</h4>
+    <div class="row">
+      <div class="col-12">
+        <h1><div class="header"><center><u>{{user.username}}'s Challenges and Videos</u></center></div></h1>
+      </div>
+      {{#each challenge}}
+        <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+          <h2><a href="/challenges/challengeSubmission/{{title}}">{{category.name}} Challenge: {{title}}</a></h2>
+          <video height= "200" width= "350" controls>
+            <source src="{{video.videoLink}}" type="video/mp4">
+          </video>
+          <p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="/challenges/profile/{{user.username}}"><i>User</i></a></button> {{caption}}</p>
 
 
-<div class="row"></div>
-{{#each challenge}}
-  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
-    <h2>{{category.name}} Challenge: {{title}}</h2>
-    <video height= "200" width= "350" controls>
-      <source src="{{video.videoLink}}" type="video/mp4">
-    </video>
-    <p></p><button style="font-size:17px"><i class="fa fa-user"></i> <a href="{{user.username}}"><i>{{user.username}}</i></a></button> {{caption}}</p>
+        </div>
+      {{/each}}
     </div>
-{{/each}}
+  </div>
+</div>
 
 {{else}}
-<h3>You can...</h3>
-<ul>
-  <h3><li><a href="/register">Register</a></li></h3>
-  <h3><li><a href="/login">Login</a></li></h3>
-</ul>
-
+  <div class="container">
+    <div class="homestyle">
+      <div class="row">
+        <div class="col-12">
+          <h2>Welcome to Ready Set Go!</h2>
+        </div>
+        <div class="col-12">
+          <h3>If you don't have an account yet, <a href="/register">Register</a></h3>
+        </div>
+        <div class="col-12">
+          <h3>Otherwise, <a href="/login">Login</a></h3>
+        </div>
+        <div class="col-12">
+          <h3></h3>
+        </div>
+          <img src="https://media.giphy.com/media/kHm5Vg8bgSGEBXWhkX/giphy.gif">
+      </div>
+    </div>
+  </div>
 {{/if}}
